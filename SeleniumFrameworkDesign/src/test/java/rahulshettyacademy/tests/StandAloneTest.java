@@ -20,7 +20,7 @@ public class StandAloneTest
 {
 	public static void main(String[] args) 
 	{		
-		String productName = "ADIDAS ORIGINAL";
+		String productName = "ZARA COAT 3";
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--remote-allow-origins=*");
 		//WebDriverManager.chromedriver().setup();
