@@ -34,11 +34,9 @@ public class BaseTest {
 	public LandingPage landingPage;
 
 	public WebDriver initializeDriver() throws IOException
-
 	{
 		// properties class
-
-		 Properties prop = new Properties();
+		Properties prop = new Properties();
 		FileInputStream fis = new FileInputStream(System.getProperty("user.dir")
 				+ "//src//main//java//rahulshettyacademy//resources//GlobalData.properties");
 		prop.load(fis);
