@@ -39,18 +39,26 @@ public class ProductCatalogue extends AbstractComponent {
 		return products;
 	}
 	
-	public WebElement getProductByName(String productName)
-	{
-		WebElement prod =	getProductList().stream().filter(product->
-		product.findElement(By.cssSelector("b")).getText().equals(productName)).findFirst().orElse(null);
-		return prod;
+//	public WebElement getProductByName(String productName) throws InterruptedException
+//	{
+//		WebElement prod =	getProductList().stream().filter(product->
+//		product.findElement(By.cssSelector("b")).getText().equals(productName)).findFirst().orElse(null);
+//		return prod;
+//	}
+	public WebElement getProductByName(String productName) {
+	    return products.stream()
+	        .filter(p -> p.findElement(By.cssSelector("b"))
+	        .getText().toLowerCase()
+	        .contains(productName.toLowerCase()))
+	        .findFirst()
+	        .orElse(null);
 	}
-	
 	
 	public void addProductToCart(String productName) throws InterruptedException
 	{
 		WebElement prod = getProductByName(productName);
 		prod.findElement(addToCart).click();
+		System.out.println("Add the product to the cart");
 		waitForElementToAppear(toastMessage);
 		waitForElementToDisappear(spinner);
 	}

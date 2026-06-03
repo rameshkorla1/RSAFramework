@@ -3,14 +3,14 @@
 <suite thread-count="1" name="Failed suite [Surefire suite]" verbose="0">
   <test thread-count="1" name="Surefire test(failed)" verbose="0">
     <classes>
-      <class name="rahulshettyacademy.tests.ErrorValidationsTest">
+      <class name="rahulshettyacademy.tests.SubmitOrderTest">
         <methods>
-          <include name="LoginErrorValidation"/>
+          <include name="OrderHistoryTest"/>
           <include name="tearDown"/>
-          <include name="ProductErrorValidation"/>
+          <include name="submitOrder"/>
           <include name="launchApplication"/>
         </methods>
-      </class> <!-- rahulshettyacademy.tests.ErrorValidationsTest -->
+      </class> <!-- rahulshettyacademy.tests.SubmitOrderTest -->
     </classes>
   </test> <!-- Surefire test(failed) -->
 </suite> <!-- Failed suite [Surefire suite] -->
