@@ -34,11 +34,9 @@ public class BaseTest {
 	public LandingPage landingPage;
 
 	public WebDriver initializeDriver() throws IOException
-
 	{
 		// properties class
-
-		 Properties prop = new Properties();
+		Properties prop = new Properties();
 		FileInputStream fis = new FileInputStream(System.getProperty("user.dir")
 				+ "//src//main//java//rahulshettyacademy//resources//GlobalData.properties");
 		prop.load(fis);
@@ -47,16 +45,26 @@ public class BaseTest {
 		//prop.getProperty("browser");
 
 		if (browserName.contains("chrome")) {
-			ChromeOptions options = new ChromeOptions();
-			WebDriverManager.chromedriver().setup();
-			if(browserName.contains("headless")){
-			options.addArguments("--headless");		
-			driver = new ChromeDriver(options);
-			}
-			driver = new ChromeDriver();
-			//driver.manage().window().setSize(new Dimension(1440,900));//full screen
+		    ChromeOptions options = new ChromeOptions();
+		    //WebDriverManager.chromedriver().setup();
+		    Map<String, Object> prefs = new HashMap<String, Object>();
+		    prefs.put("credentials_enable_service", false);
+		    prefs.put("password_manager_enabled", false);
+		    Map<String, Object> profile = new HashMap<String, Object>();
+		    profile.put("password_manager_leak_detection", false);
+		    prefs.put("profile", profile);
+		    options.setExperimentalOption("prefs", prefs);
+		    if (browserName.contains("headless")) {
+		        options.addArguments("--headless=new");
+		        options.addArguments("--window-size=1920,1080");
+		        options.addArguments("--disable-gpu");
+		        options.addArguments("--no-sandbox");
+		        options.addArguments("--disable-dev-shm-usage");
+		    }
+		    driver = new ChromeDriver(options); // ✅ ONLY ONCE
+		}
 
-		} else if (browserName.equalsIgnoreCase("firefox")) {
+		else if (browserName.equalsIgnoreCase("firefox")) {
 			System.setProperty("webdriver.gecko.driver",
 					"/Users/rahulshetty//documents//geckodriver");
 			driver = new FirefoxDriver();
@@ -120,8 +128,8 @@ public class BaseTest {
 	@AfterMethod(alwaysRun=true)	
 	public void tearDown()
 	{
-//		if (driver != null) {
+		if (driver != null) {
 	        driver.quit();
-//	    }
+	    }
 	}
 }

@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import rahulshettyacademy.AbstractComponents.AbstractComponent;
 
@@ -25,7 +27,8 @@ public class ConfirmationPage extends AbstractComponent{
 	
 	public String getConfirmationMessage()
 	{
-		CheckoutPage cp = new CheckoutPage(driver);	
+		WebDriverWait wait = new WebDriverWait(driver, java.time.Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.visibilityOf(confirmationMessage));
 		return confirmationMessage.getText();
 	}
 	
